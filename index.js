@@ -3,9 +3,11 @@ import session from 'express-session';
 import pkg from 'sqlite3';
 import nunjucks from 'nunjucks';
 import path from 'path';
-import bcrypt from 'bcryptjs';  // Añade esta línea
+import homeRoutes from './routes/homeRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
-const { Database } = pkg;
+
 const app = express();
 const port = 3000;
 
@@ -25,9 +27,13 @@ saveUninitialized:true
 // Analiza los cuerpos de las solicitudes con datos codificados en URL (como los formularios HTML)
 app.use(express.urlencoded({ extended:true}));
 
-const db = new Database('blog.db');
 
-db.serialize(() => {
-    db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT, password TEXT)");
-    db.run("CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY, title TEXT, content TEXT, author_id INTEGER, FOREIGN KEY(author_id) REFERENCES users(id))");
-});
+// Rutas
+app.use('/', homeRoutes);
+app.use('/admin', adminRoutes);
+app.use('/auth', authRoutes);
+
+// Iniciar el servidor
+app.listen(port, () => {
+    console.log(`Servidor escuchando en http://localhost:${port}`);
+})

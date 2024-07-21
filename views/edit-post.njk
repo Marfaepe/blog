@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Post</title>
+</head>
+<body>
+    <h1>Editar Post</h1>
+    <form action="/edit-post/{{ post.id }}" method="post">
+        <label for="title">Título:</label>
+        <input type="text" id="title" name="title" value="{{ post.title }}" required>
+        <br>
+        <label for="content">Contenido:</label>
+        <textarea id="content" name="content" required>{{ post.content }}</textarea>
+        <br>
+        <button type="submit">Actualizar</button>
+    </form>
+    <form action="/delete-post/{{ post.id }}" method="post" style="margin-top: 10px;">
+        <button type="submit">Eliminar</button>
+    </form>
+    <a href="/">Volver a la lista de posts</a>
+</body>
+</html>

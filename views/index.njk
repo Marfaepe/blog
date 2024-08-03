@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Blog</title>
 </head>
 <body>
     <h1>Blog</h1>
-    { % if posts.length >0 %}
+    {% if posts.length > 0 %}
         <ul>
-            { % for post in posts %}
+            {% for post in posts %}
                 <li>
                     <h2>{{ post.title }}</h2>
                     <p>{{ post.content }}</p>
                     <p><em>{{ post.username }}</em></p>
-        
                 </li>
-            { % endfor %}    
+            {% endfor %}
         </ul>
-    { % else % }
+    {% else %}
         <p>Aún no hay publicaciones</p>
-    { % endif %}    
+    {% endif %}
 
     <a href="/create-post">Crear una nueva publicación</a> |
-    <a hfer="/register">Registrarse</a>
+    <a href="/register">Registrarse</a> |
     <a href="/login">Iniciar sesión</a>
 </body>
 </html>
+
+

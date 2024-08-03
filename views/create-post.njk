@@ -6,15 +6,19 @@
 </head>
 <body>
     <h1>Crear Nueva Publicación</h1>
-    <form action="/create-post" method="post">
+    <form action="/create-post" method="post" enctype="multipart/form-data">
         <label for="title">Título:</label>
         <input type="text" id="title" name="title" required>
         <br>
         <label for="content">Contenido:</label>
         <textarea id="content" name="content" rows="5" required></textarea>
         <br>
+        <label for="file">Archivo (opcional):</label>
+        <input type="file" id="file" name="file">
+        <br>
         <button type="submit">Publicar</button>
     </form>
     <a href="/">Volver al inicio</a>
 </body>
 </html>
+
